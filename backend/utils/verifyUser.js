@@ -3,7 +3,6 @@ const jwt=require('jsonwebtoken');
 const createError=require('./error')
 const verifyToken=(req,res,next)=>{
 
-    console.log(req.cookies)
     const token=req.cookies.access;
     if(!token) return next(createError(401,"You are not authorized"));
 

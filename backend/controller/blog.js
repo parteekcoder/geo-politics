@@ -20,4 +20,13 @@ const getAllBlogs=async(req,res,next)=>{
     }
 }
 
-module.exports= {createBlog,getAllBlogs}
+const likeBlog=async(req,res,next)=>{
+    try {
+        const blog=await Blog.findByIdAndUpdate(req.params.blogid,{$inc:{"likes":1}},{new:true});
+        res.status(200).json(blog);
+    } catch (error) {
+        next(error)
+    }
+}
+
+module.exports= {createBlog,getAllBlogs,likeBlog}
